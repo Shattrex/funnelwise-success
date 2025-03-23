@@ -56,7 +56,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pt-28 pb-20 px-6 md:px-10">
         <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 animate-on-scroll">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 animate-on-scroll">
             <div className="bg-success-100 text-success-700 py-3 px-4 rounded-lg inline-block mb-4">
               Dreaming of…<br />
               Controlling Your Own Destiny?<br />
@@ -64,6 +64,10 @@ const Index = () => {
               Financial Freedom?
             </div>
           </h1>
+          
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 animate-on-scroll">
+            Unlock Your Franchise Potential With Expert Guidance
+          </h2>
           
           <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto mb-10 animate-on-scroll">
             Join successful franchise owners who have built thriving businesses with our proven strategies and personalized coaching.
@@ -115,13 +119,10 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Get Your Free Franchise Success Guide
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
               Leading Franchise Expert Reveals Why 60% of Employees Age 45+<br />
               Are a Good Fit For Franchise Ownership –<br />
               And How To Tell If You are One of Them
-            </p>
+            </h2>
           </div>
           
           <div className="animate-on-scroll">
