@@ -25,10 +25,10 @@ const Header = () => {
       scrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo - Updated to use the new logo with transparent background */}
         <div className="flex-shrink-0">
           <img 
-            src="/lovable-uploads/ea74c930-6d85-45ed-9bf6-e77dd589877c.png" 
+            src="/lovable-uploads/15446c41-b44a-47cd-a95a-4ffdf5bf3273.png" 
             alt="Success Franchising" 
             className="h-12 md:h-14 w-auto object-contain"
           />

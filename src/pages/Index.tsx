@@ -165,14 +165,16 @@ const Index = () => {
       {/* Sticky Footer */}
       <StickyFooter />
       
-      {/* Basic Footer */}
+      {/* Basic Footer - Updated to use the new logo with white background */}
       <footer className="bg-gray-900 text-white py-8 px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <img 
-            src="/lovable-uploads/ea74c930-6d85-45ed-9bf6-e77dd589877c.png" 
-            alt="Success Franchising" 
-            className="h-12 mx-auto mb-4 invert"
-          />
+          <div className="bg-white inline-block p-2 rounded-md mb-4">
+            <img 
+              src="/lovable-uploads/15446c41-b44a-47cd-a95a-4ffdf5bf3273.png" 
+              alt="Success Franchising" 
+              className="h-12 mx-auto"
+            />
+          </div>
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} Success Franchising. All rights reserved.
           </p>
