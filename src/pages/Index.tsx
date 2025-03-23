@@ -14,8 +14,7 @@ const Index = () => {
   };
   
   const handleBookCall = () => {
-    // Replace with actual booking URL
-    window.open("https://meetings.hubspot.com/adrienne-deli", "_blank");
+    window.open("http://meetings.hubspot.com/aleigh?uuid=a52fc7b4-d4b3-4d7a-9dd1-c7c243ea7290", "_blank");
   };
   
   useEffect(() => {

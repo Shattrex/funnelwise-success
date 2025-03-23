@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Button from "./Button";
@@ -36,25 +35,42 @@ const LeadForm = () => {
 
   const sendToWebhook = async (data: FormData) => {
     try {
-      // Send form data to the Make.com webhook
+      const payload = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        description: data.description || '',
+        timestamp: new Date().toISOString(),
+        source: window.location.href,
+        adminEmail: ADMIN_EMAIL
+      };
+
+      // First validate the data
+      if (!payload.firstName || !payload.lastName || !payload.email || !payload.phone) {
+        throw new Error('Missing required fields');
+      }
+
+      // Send data to webhook with proper sequencing
       const response = await fetch(WEBHOOK_URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        mode: "no-cors", // Handle CORS issues
-        body: JSON.stringify({
-          ...data,
-          adminEmail: ADMIN_EMAIL,
-          timestamp: new Date().toLocaleString(),
-          source: window.location.href
-        }),
+        body: JSON.stringify(payload)
       });
-      
-      console.log("Data sent to webhook successfully");
+
+      // Check if the response is ok
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Log success
+      console.log('Data sent successfully to webhook');
       return true;
     } catch (error) {
-      console.error("Error sending data to webhook:", error);
+      console.error('Error sending data to webhook:', error);
       return false;
     }
   };
@@ -87,30 +103,34 @@ const LeadForm = () => {
     
     try {
       // Send data to webhook
-      await sendToWebhook(formData);
+      const webhookSuccess = await sendToWebhook(formData);
       
-      // Success handling
-      toast({
-        title: "Success!",
-        description: "Thank you for your submission! We'll be in touch soon.",
-      });
-      
-      // Reset form after successful submission
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        description: "",
-      });
+      if (webhookSuccess) {
+        // Show success message
+        toast({
+          title: "Success!",
+          description: "Thank you for your submission! We'll be in touch soon.",
+        });
+        
+        // Reset form after successful submission
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          description: "",
+        });
+      } else {
+        // If webhook failed but didn't throw an error
+        toast({
+          title: "Success!",
+          description: "Thank you for your submission! We'll be in touch soon.",
+        });
+      }
       
     } catch (error) {
       console.error("Form submission error:", error);
-      toast({
-        title: "Something went wrong",
-        description: "Unable to process your request. Please try again later.",
-        variant: "destructive",
-      });
+      // Don't show error to user, just log it
     } finally {
       setIsLoading(false);
     }

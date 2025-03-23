@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import { cn } from "@/lib/utils";
@@ -18,8 +17,7 @@ const StickyFooter = () => {
   }, []);
   
   const handleBookCall = () => {
-    // This is a placeholder. Replace with your actual booking URL
-    window.open("https://meetings.hubspot.com/adrienne-deli", "_blank");
+    window.open("http://meetings.hubspot.com/aleigh?uuid=a52fc7b4-d4b3-4d7a-9dd1-c7c243ea7290", "_blank");
   };
 
   return (
