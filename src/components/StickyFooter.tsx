@@ -29,7 +29,7 @@ const StickyFooter = () => {
     )}>
       <div className="max-w-7xl mx-auto py-4 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-gray-800 font-medium text-center sm:text-left mb-2 sm:mb-0">
-          Take the first step towards business success. Book a free consultation today.
+          Take the first step towards your ultimate success. Book a free consultation today.
         </p>
         <Button
           variant="primary"

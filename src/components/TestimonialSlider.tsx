@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -15,7 +14,7 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "Clint Tabon",
     role: "Focal Point Business Coaching",
-    quote: "Adrienne is the reason behind my success. Her expertise helped me scale my franchise business beyond what I imagined!",
+    quote: "Working with Adrienne has been incredibly helpful in my journey to becoming a Focal Point Business Coaching franchise owner.",
     videoUrl: "https://drive.google.com/file/d/1xYDMkLrAJZeJqREbchF8UOq0IzSrGhHW/preview"
   },
   {
@@ -33,7 +32,6 @@ const TestimonialSlider = () => {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   
-  // Required distance in pixels for swipe
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -136,7 +134,6 @@ const TestimonialSlider = () => {
         ))}
       </div>
       
-      {/* Dots */}
       <div className="flex justify-center gap-2 pb-4">
         {testimonials.map((_, index) => (
           <button
