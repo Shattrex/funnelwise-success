@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     name: "Michael Harding",
     role: "Owner, Five Star Painting",
     quote: "I wasn't sure if franchising was right for me, but Adrienne's guidance made all the difference. Best decision I ever made.",
-    videoUrl: "https://drive.google.com/file/d/1-cawDbamZHUfS_hclZVfvlv7HllrD-ZL/preview"
+    videoUrl: "https://drive.google.com/file/d/1RNQ2SFuapHPru6sKZDcJiYYHLQXrgUQq/preview"
   }
 ];
 
