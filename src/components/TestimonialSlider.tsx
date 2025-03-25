@@ -15,7 +15,7 @@ const testimonials: Testimonial[] = [
     name: "Clint Tabon",
     role: "Focal Point Business Coaching",
     quote: "Working with Adrienne has been incredibly helpful in my journey to becoming a Focal Point Business Coaching franchise owner.",
-    videoUrl: "https://drive.google.com/file/d/1xYDMkLrAJZeJqREbchF8UOq0IzSrGhHW/preview"
+    videoUrl: "https://drive.google.com/file/d/1U-sKB5Ipm83kc2_wlbTMhW432Dybc1vc/preview"
   },
   {
     id: 2,
