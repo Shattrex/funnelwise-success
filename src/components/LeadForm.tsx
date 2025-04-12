@@ -46,27 +46,18 @@ const LeadForm = () => {
         adminEmail: ADMIN_EMAIL
       };
 
-      // First validate the data
-      if (!payload.firstName || !payload.lastName || !payload.email || !payload.phone) {
-        throw new Error('Missing required fields');
-      }
-
-      // Send data to webhook with proper sequencing
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
         body: JSON.stringify(payload)
       });
 
-      // Check if the response is ok
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Log success
       console.log('Data sent successfully to webhook');
       return true;
     } catch (error) {
