@@ -7,7 +7,11 @@ interface FormData {
   lastName: string;
   email: string;
   phone: string;
-  description: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  franchiseInterest: string;
+  about: string;
 }
 
 // Configuration constants
@@ -22,7 +26,11 @@ const LeadForm = () => {
     lastName: "",
     email: "",
     phone: "",
-    description: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    franchiseInterest: "",
+    about: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,11 +48,17 @@ const LeadForm = () => {
         lastName: data.lastName,
         email: data.email,
         phone: data.phone,
-        description: data.description || '',
+        city: data.city,
+        state: data.state,
+        postalCode: data.postalCode,
+        franchiseInterest: data.franchiseInterest,
+        about: data.about || '',
         timestamp: new Date().toISOString(),
         source: window.location.href,
         adminEmail: ADMIN_EMAIL
       };
+
+      console.log('Sending payload:', payload);
 
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
@@ -70,7 +84,8 @@ const LeadForm = () => {
     e.preventDefault();
     
     // Validate form
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || 
+        !formData.city || !formData.state || !formData.postalCode || !formData.franchiseInterest) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields.",
@@ -109,7 +124,11 @@ const LeadForm = () => {
           lastName: "",
           email: "",
           phone: "",
-          description: "",
+          city: "",
+          state: "",
+          postalCode: "",
+          franchiseInterest: "",
+          about: "",
         });
       } else {
         // If webhook failed but didn't throw an error
@@ -224,15 +243,79 @@ const LeadForm = () => {
                   placeholder="(555) 123-4567"
                 />
               </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div>
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                    City <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    required
+                    className="input-franchise"
+                    placeholder="Your city"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                    State <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    required
+                    className="input-franchise"
+                    placeholder="Your state"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-1">
+                    Postal Code <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="postalCode"
+                    name="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleInputChange}
+                    required
+                    className="input-franchise"
+                    placeholder="Your postal code"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="franchiseInterest" className="block text-sm font-medium text-gray-700 mb-1">
+                  Franchise Interest <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="franchiseInterest"
+                  name="franchiseInterest"
+                  value={formData.franchiseInterest}
+                  onChange={handleInputChange}
+                  required
+                  rows={3}
+                  className="input-franchise resize-none"
+                  placeholder="What type of franchise are you interested in? (e.g., food, retail, service, etc.)"
+                ></textarea>
+              </div>
               
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="about" className="block text-sm font-medium text-gray-700 mb-1">
                   Tell us about yourself (Optional)
                 </label>
                 <textarea
-                  id="description"
-                  name="description"
-                  value={formData.description}
+                  id="about"
+                  name="about"
+                  value={formData.about}
                   onChange={handleInputChange}
                   rows={3}
                   className="input-franchise resize-none"
