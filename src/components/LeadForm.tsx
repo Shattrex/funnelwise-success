@@ -16,7 +16,7 @@ interface FormData {
 
 // Configuration constants
 const ADMIN_EMAIL = "damil.alantoai@gmail.com";
-const WEBHOOK_URL = "https://hook.eu2.make.com/ubp6paow7pbkq1kibybtaz1ncbfx7cf9";
+const WEBHOOK_URL = "https://hook.eu2.make.com/gqaj49n314dvojjd31e7kfwxehhyy676";
 
 const LeadForm = () => {
   const { toast } = useToast();
