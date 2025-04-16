@@ -9,7 +9,6 @@ interface FormData {
   phone: string;
   city: string;
   state: string;
-  postalCode: string;
   zip: string;
   franchiseInterest: string;
   about: string;
@@ -29,7 +28,6 @@ const LeadForm = () => {
     phone: "",
     city: "",
     state: "",
-    postalCode: "",
     zip: "",
     franchiseInterest: "",
     about: "",
@@ -71,7 +69,6 @@ const LeadForm = () => {
         phone: data.phone,
         city: data.city,
         state: data.state,
-        postalCode: data.postalCode,
         zip: data.zip,
         franchiseInterest: data.franchiseInterest,
         about: data.about || '',
@@ -107,7 +104,7 @@ const LeadForm = () => {
     
     // Validate form
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || 
-        !formData.city || !formData.state || !formData.postalCode || !formData.zip || !formData.franchiseInterest) {
+        !formData.city || !formData.state || !formData.zip || !formData.franchiseInterest) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields.",
@@ -148,7 +145,6 @@ const LeadForm = () => {
           phone: "",
           city: "",
           state: "",
-          postalCode: "",
           zip: "",
           franchiseInterest: "",
           about: "",
@@ -267,7 +263,7 @@ const LeadForm = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div>
                   <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
                     City <span className="text-red-500">*</span>
@@ -296,21 +292,6 @@ const LeadForm = () => {
                     required
                     className="input-franchise"
                     placeholder="Your state"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-1">
-                    Postal Code <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="postalCode"
-                    name="postalCode"
-                    value={formData.postalCode}
-                    onChange={handleInputChange}
-                    required
-                    className="input-franchise"
-                    placeholder="Your postal code"
                   />
                 </div>
                 <div>
