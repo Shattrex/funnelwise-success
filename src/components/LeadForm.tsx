@@ -10,7 +10,7 @@ interface FormData {
   city: string;
   state: string;
   postalCode: string;
-  zipCode: string;
+  zip: string;
   franchiseInterest: string;
   about: string;
 }
@@ -30,7 +30,7 @@ const LeadForm = () => {
     city: "",
     state: "",
     postalCode: "",
-    zipCode: "",
+    zip: "",
     franchiseInterest: "",
     about: "",
   });
@@ -39,7 +39,7 @@ const LeadForm = () => {
     const { name, value } = e.target;
     
     // Format zip code with pattern
-    if (name === "zipCode") {
+    if (name === "zip") {
       // Example: Format as 12345-1234 (US ZIP+4 format)
       // Remove any non-digit characters first
       const digits = value.replace(/\D/g, '');
@@ -72,7 +72,7 @@ const LeadForm = () => {
         city: data.city,
         state: data.state,
         postalCode: data.postalCode,
-        zipCode: data.zipCode,
+        zip: data.zip,
         franchiseInterest: data.franchiseInterest,
         about: data.about || '',
         timestamp: new Date().toISOString(),
@@ -107,7 +107,7 @@ const LeadForm = () => {
     
     // Validate form
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || 
-        !formData.city || !formData.state || !formData.postalCode || !formData.zipCode || !formData.franchiseInterest) {
+        !formData.city || !formData.state || !formData.postalCode || !formData.zip || !formData.franchiseInterest) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields.",
@@ -149,7 +149,7 @@ const LeadForm = () => {
           city: "",
           state: "",
           postalCode: "",
-          zipCode: "",
+          zip: "",
           franchiseInterest: "",
           about: "",
         });
@@ -314,14 +314,14 @@ const LeadForm = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
-                    ZIP Code <span className="text-red-500">*</span>
+                  <label htmlFor="zip" className="block text-sm font-medium text-gray-700 mb-1">
+                    ZIP <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    id="zipCode"
-                    name="zipCode"
-                    value={formData.zipCode}
+                    id="zip"
+                    name="zip"
+                    value={formData.zip}
                     onChange={handleInputChange}
                     required
                     className="input-franchise"
