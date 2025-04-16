@@ -10,6 +10,7 @@ interface FormData {
   city: string;
   state: string;
   postalCode: string;
+  zipCode: string;
   franchiseInterest: string;
   about: string;
 }
@@ -29,16 +30,36 @@ const LeadForm = () => {
     city: "",
     state: "",
     postalCode: "",
+    zipCode: "",
     franchiseInterest: "",
     about: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    
+    // Format zip code with pattern
+    if (name === "zipCode") {
+      // Example: Format as 12345-1234 (US ZIP+4 format)
+      // Remove any non-digit characters first
+      const digits = value.replace(/\D/g, '');
+      
+      // Format as 12345 or 12345-1234 depending on length
+      let formattedZip = digits;
+      if (digits.length > 5) {
+        formattedZip = `${digits.substring(0, 5)}-${digits.substring(5, 9)}`;
+      }
+      
+      setFormData((prev) => ({
+        ...prev,
+        [name]: formattedZip,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const sendToWebhook = async (data: FormData) => {
@@ -51,6 +72,7 @@ const LeadForm = () => {
         city: data.city,
         state: data.state,
         postalCode: data.postalCode,
+        zipCode: data.zipCode,
         franchiseInterest: data.franchiseInterest,
         about: data.about || '',
         timestamp: new Date().toISOString(),
@@ -85,7 +107,7 @@ const LeadForm = () => {
     
     // Validate form
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || 
-        !formData.city || !formData.state || !formData.postalCode || !formData.franchiseInterest) {
+        !formData.city || !formData.state || !formData.postalCode || !formData.zipCode || !formData.franchiseInterest) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields.",
@@ -127,6 +149,7 @@ const LeadForm = () => {
           city: "",
           state: "",
           postalCode: "",
+          zipCode: "",
           franchiseInterest: "",
           about: "",
         });
@@ -244,7 +267,7 @@ const LeadForm = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
                 <div>
                   <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
                     City <span className="text-red-500">*</span>
@@ -288,6 +311,22 @@ const LeadForm = () => {
                     required
                     className="input-franchise"
                     placeholder="Your postal code"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
+                    ZIP Code <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    value={formData.zipCode}
+                    onChange={handleInputChange}
+                    required
+                    className="input-franchise"
+                    placeholder="12345 or 12345-1234"
+                    maxLength={10}
                   />
                 </div>
               </div>
